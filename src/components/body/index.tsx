@@ -1,5 +1,6 @@
 import CardDetails from "../card";
-import WeekTemp from "../WeekTemp";
+import WeekTemp from "../weekTemp";
+import "../loader/loader.css";
 import { useWheater } from "../../hooks/useWheather";
 
 const dataWeek = [
@@ -11,24 +12,32 @@ const dataWeek = [
   { id: 6, day: "Sáb", dayNumber: 21, max: 29, min: 21 },
   { id: 7, day: "Dom", dayNumber: 22, max: 31, min: 22 },
 ];
-
-export default function Body() {
-  const { data, isLoading, error } = useWheater("Paris");
+interface BodyProps {
+  city: string;
+}
+export default function Body({ city }: BodyProps) {
+  const { data, isLoading } = useWheater(city);
   const timestamp = data?.location.localtime_epoch;
 
   const date = timestamp ? new Date(timestamp) : null;
   console.log("a data", date);
   console.log("meu data", data);
-  if (isLoading) return <p>Carregando...</p>;
-  if (error) return <p>{error}</p>;
+
   return (
     <div className="h-full bg-gradient-to-r from-[#E8F7FF] to-[#BEDBFD] p-4">
       <div className="grid grid-cols-1 md:grid-cols-[2fr_1fr] gap-4 max-w-6xl mx-auto">
         <div className="bg-white flex flex-col p-4 rounded shadow">
-          <span className="opacity-60 text-sm">Agora em</span>
-          <span className="font-black text-lg sm:text-xl">
-            {data?.location.name}, {data?.location.country}
-          </span>
+          {isLoading ? (
+            <div className="loader flex items-center justify-center"></div>
+          ) : (
+            <>
+              {" "}
+              <span className="opacity-60 text-sm">Agora em</span>
+              <span className="font-black text-lg sm:text-xl">
+                {data?.location.name}, {data?.location.country}
+              </span>
+            </>
+          )}
 
           <div className="flex flex-col mt-2">
             <div className="flex items-center gap-2 text-[#81BDFC] text-2xl sm:text-3xl">
@@ -40,7 +49,6 @@ export default function Body() {
             </span>
           </div>
 
-          {/* Cards */}
           <div className="grid grid-cols-2 gap-2 mt-4">
             <CardDetails
               clima_info="Umidade"
