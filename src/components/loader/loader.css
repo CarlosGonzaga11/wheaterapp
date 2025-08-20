@@ -1,0 +1,26 @@
+.loader {
+  width: 80px;
+  display: grid;
+
+  color: blue;
+
+  mask-composite: intersect;
+  animation: l2 1s infinite alternate;
+}
+.loader:before,
+.loader:after {
+  content: "";
+  grid-area: 1/1;
+  height: 15px;
+  aspect-ratio: 1;
+  background: #add8e6;
+  border-radius: 50%;
+}
+.loader:after {
+  margin-left: auto;
+}
+@keyframes l2 {
+  to {
+    width: 50px;
+  }
+}

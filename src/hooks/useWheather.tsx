@@ -30,6 +30,7 @@ export function useWheater(city: string) {
         setIsLoading(true);
         const result = await GetWheater(city);
         console.log("meu result no hook", result);
+
         setData(result);
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
       } catch (err) {
@@ -38,6 +39,7 @@ export function useWheater(city: string) {
         setIsLoading(false);
       }
     }
+
     fetchData(city);
   }, [city]);
   return { data, isLoading, error };
