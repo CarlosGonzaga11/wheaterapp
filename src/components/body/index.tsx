@@ -2,7 +2,11 @@ import CardDetails from "../card";
 import WeekTemp from "../weekTemp";
 import "../loader/loader.css";
 import { useWheater } from "../../hooks/useWheather";
-
+import { WiHumidity } from "react-icons/wi";
+import { CiTempHigh } from "react-icons/ci";
+import { MdOutlineWindPower } from "react-icons/md";
+import { FiWind } from "react-icons/fi";
+import { CgTime } from "react-icons/cg";
 const dataWeek = [
   { id: 1, day: "Seg", dayNumber: 16, max: 30, min: 20 },
   { id: 2, day: "Ter", dayNumber: 17, max: 28, min: 18 },
@@ -51,22 +55,27 @@ export default function Body({ city }: BodyProps) {
             <CardDetails
               clima_info="Umidade"
               clima_dados={data?.current?.humidity}
+              icon={<WiHumidity />}
             />
             <CardDetails
               clima_info="Sensação"
               clima_dados={data?.current?.feelslike_c}
+              icon={<CiTempHigh />}
             />
             <CardDetails
               clima_info="Vento"
               clima_dados={data?.current?.wind_mph}
+              icon={<MdOutlineWindPower />}
             />
             <CardDetails
               clima_info="Direção do vento"
               clima_dados={data?.current?.wind_dir}
+              icon={<FiWind />}
             />
             <CardDetails
               clima_info="Horário"
               clima_dados={date?.toLocaleTimeString()}
+              icon={<CgTime />}
             />
           </div>
         </div>
