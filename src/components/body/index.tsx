@@ -20,8 +20,6 @@ export default function Body({ city }: BodyProps) {
   const timestamp = data?.location.localtime_epoch;
 
   const date = timestamp ? new Date(timestamp) : null;
-  console.log("a data", date);
-  console.log("meu data", data);
 
   return (
     <div className="h-full bg-gradient-to-r from-[#E8F7FF] to-[#BEDBFD] p-4">
