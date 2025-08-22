@@ -12,7 +12,7 @@ export default function Header({ setCity }: HeaderProps) {
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === "Enter" && inputRef.current) {
       setCity(inputRef.current.value);
-      console.log(inputRef.current.value);
+      inputRef.current.value = "";
     }
   };
 
