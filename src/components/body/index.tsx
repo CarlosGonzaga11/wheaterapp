@@ -1,26 +1,30 @@
 import CardDetails from "../card";
 import WeekTemp from "../weekTemp";
 import "../loader/loader.css";
-import { useWheater } from "../../hooks/useWheather";
 import { WiHumidity } from "react-icons/wi";
 import { CiTempHigh } from "react-icons/ci";
 import { MdOutlineWindPower } from "react-icons/md";
 import { FiWind } from "react-icons/fi";
 import { CgTime } from "react-icons/cg";
+import { LuCloudRain } from "react-icons/lu";
+import { WiDaySunny } from "react-icons/wi";
+import { FiCloud } from "react-icons/fi";
+import { useWeatherquery } from "../../hooks/useWheather";
+
 const dataWeek = [
-  { id: 1, day: "Seg", dayNumber: 16, max: 30, min: 20 },
-  { id: 2, day: "Ter", dayNumber: 17, max: 28, min: 18 },
-  { id: 3, day: "Qua", dayNumber: 18, max: 26, min: 17 },
-  { id: 4, day: "Qui", dayNumber: 19, max: 25, min: 16 },
-  { id: 5, day: "Sex", dayNumber: 20, max: 27, min: 19 },
-  { id: 6, day: "Sáb", dayNumber: 21, max: 29, min: 21 },
-  { id: 7, day: "Dom", dayNumber: 22, max: 31, min: 22 },
+  { id: 1, icon: <LuCloudRain />, day: "Seg", dayNumber: 16, max: 30, min: 20 },
+  { id: 2, icon: <LuCloudRain />, day: "Ter", dayNumber: 17, max: 28, min: 18 },
+  { id: 3, icon: <WiDaySunny />, day: "Qua", dayNumber: 18, max: 26, min: 17 },
+  { id: 4, icon: <FiCloud />, day: "Qui", dayNumber: 19, max: 25, min: 16 },
+  { id: 5, icon: <LuCloudRain />, day: "Sex", dayNumber: 20, max: 27, min: 19 },
+  { id: 6, icon: <FiCloud />, day: "Sáb", dayNumber: 21, max: 29, min: 21 },
+  { id: 7, icon: <WiDaySunny />, day: "Dom", dayNumber: 22, max: 31, min: 22 },
 ];
 interface BodyProps {
   city: string;
 }
 export default function Body({ city }: BodyProps) {
-  const { data, isLoading } = useWheater(city);
+  const { data, isLoading } = useWeatherquery(city || "London");
   const timestamp = data?.location.localtime_epoch;
 
   const date = timestamp ? new Date(timestamp) : null;
@@ -80,13 +84,13 @@ export default function Body({ city }: BodyProps) {
           </div>
         </div>
 
-        {/* Coluna direita */}
         <div className="flex flex-col gap-2">
           <span className="text-sm sm:text-base">Próximos 7 dias</span>
           <div className="flex flex-col gap-1">
             {dataWeek.map((temp) => (
               <WeekTemp
                 key={temp.id}
+                icon={temp.icon}
                 day={temp.day}
                 dayNumber={temp.dayNumber}
                 min={temp.min}

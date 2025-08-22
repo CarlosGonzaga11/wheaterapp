@@ -6,8 +6,8 @@ export default function Footer() {
     <footer className="bg-gradient-to-r from-[#E8F7FF] to-[#BEDBFD] text-xs sm:text-sm py-4">
       <div className="max-w-6xl mx-auto flex flex-col gap-4 px-4">
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-          <div className="flex flex-wrap gap-4">
-            <div className="flex items-center gap-1">
+          <div className="flex flex-wrap gap-4 text-[#646363]">
+            <div className="flex items-center gap-1 ">
               <FiMapPin />
               <p>Localização</p>
             </div>
@@ -20,11 +20,16 @@ export default function Footer() {
               <p>Sobre</p>
             </div>
           </div>
-          <div className="text-right">Unidade: C F</div>
+          <div className="text-right text-[#7f9bf8] border p-1.5 rounded-2xl">
+            Unidade: Graus
+          </div>
         </div>
-        <p className="opacity-80 text-center text-xs">
-          @2025 Tempo Agora. Dados meteorológicos atualizados em tempo real.
-        </p>
+        <div>
+          <hr className="opacity-5 mb-4" />
+          <p className="opacity-80 text-center text-xs">
+            @2025 Tempo Agora. Dados meteorológicos atualizados em tempo real.
+          </p>
+        </div>
       </div>
     </footer>
   );
